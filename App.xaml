@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:MapRangeScale"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="Asset/Style/GlobalStyle.xaml" />
     </Application.Resources>
 </Application>

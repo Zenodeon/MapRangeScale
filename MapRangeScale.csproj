@@ -7,4 +7,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Asset\Icons\Window\close.png" />
+    <None Remove="Asset\Icons\Window\min.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Asset\Icons\Window\close.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Asset\Icons\Window\min.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>
