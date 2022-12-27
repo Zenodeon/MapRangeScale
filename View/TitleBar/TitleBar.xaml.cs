@@ -20,9 +20,43 @@ namespace MapRangeScale.View
     /// </summary>
     public partial class TitleBar : UserControl
     {
+        public Window parentWindow { get; set; }
+
         public TitleBar()
         {
             InitializeComponent();
+        }
+
+        private void TitleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+                parentWindow.DragMove();
+        }
+
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            parentWindow.Close();
+        }
+
+        private void MinWindow(object sender, RoutedEventArgs e)
+        {
+            parentWindow.WindowState = WindowState.Minimized;
+        }
+
+        private void TitleBar_MouseEnter(object sender, MouseEventArgs e)
+        {
+            this.FadeProperty(HeightProperty, 20);
+            TitleBarHandle.FadeProperty(WidthProperty, 100);
+
+            ControlsGrid.FadeProperty(HeightProperty, 20);
+        }
+
+        private void TitleBar_MouseLeave(object sender, MouseEventArgs e)
+        {
+            this.FadeProperty(HeightProperty, 10);
+            TitleBarHandle.FadeProperty(WidthProperty, 50);
+
+            ControlsGrid.FadeProperty(HeightProperty, 0);
         }
     }
 }

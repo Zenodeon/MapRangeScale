@@ -56,7 +56,7 @@
 
     </Window.Resources>
 
-    <Border x:Name="cb" VerticalAlignment="Top" Height="150" CornerRadius="16" Background="Transparent">
+    <Border x:Name="cb" VerticalAlignment="Top" Height="150" CornerRadius="8" Background="Transparent">
         <Border.Clip>
             <MultiBinding Converter="{StaticResource BCC}">
                 <Binding Path="ActualWidth"
@@ -75,13 +75,9 @@
 
             </Grid.RowDefinitions>
 
-            <Border Grid.RowSpan="2" Background="{StaticResource DarkGray}" />
+            <view:TitleBar x:Name="TitleBar" Grid.Row="0" Height="10"/>
 
-            <Border Grid.RowSpan="2" Background="Transparent" Height="10" MouseEnter="TitleBar_MouseEnter" MouseDown="TitleBar_MouseDown" VerticalAlignment="Top">
-                <Border CornerRadius="2" Background="{StaticResource MidGray}" Width="50" Height="6"/>
-            </Border>
-
-            <view:TitleBar Grid.Row="0" Height="20"/>
+            <Border Grid.Row="1" Background="{StaticResource DarkGray}"/>
 
         </Grid>
     </Border>

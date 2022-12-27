@@ -5,20 +5,74 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MapRangeScale"
              mc:Ignorable="d" 
+             MouseEnter="TitleBar_MouseEnter" MouseLeave="TitleBar_MouseLeave"
              Height="20" d:DesignWidth="800">
-    <Grid Grid.Row="0" Grid.ColumnSpan="2">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="25"/>
-            <ColumnDefinition Width="25"/>
-        </Grid.ColumnDefinitions>
+    <UserControl.Resources>
+        <Style BasedOn="{StaticResource {x:Type Button}}"
+               TargetType="Button"
+               x:Key="CloseBtn">
+            <Setter Property="Background" Value="{StaticResource MidGray}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-        <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CtmBtn}">
-            <Image Source="/Asset/Icons/Window/min.png" Width="15" Height="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        </Button>
+        <Style BasedOn="{StaticResource {x:Type Button}}"
+               TargetType="Button"
+               x:Key="CtmBtn">
+            <Setter Property="Background" Value="{StaticResource MidGray}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3A3A3A"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
-        <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseBtn}">
-            <Image Source="/Asset/Icons/Window/close.png" Width="18" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        </Button>
+        <local:BorderClipConverter x:Key="BCC"/>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Border Background="{StaticResource DarkGray}" MouseDown="TitleBar_MouseDown" >
+            <Border x:Name="TitleBarHandle" CornerRadius="2" Background="{StaticResource LightGray}" Width="50" Height="6"/>
+        </Border>
+
+        <Grid x:Name="ControlsGrid" Height="20" VerticalAlignment="Top">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="25"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource CtmBtn}" Click="MinWindow">
+                <Image Source="/Asset/Icons/Window/min.png" MaxWidth="15" MaxHeight="15" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Button>
+
+            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseBtn}" Click="CloseWindow">
+                <Image Source="/Asset/Icons/Window/close.png" MaxWidth="18" MaxHeight="20" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            </Button>
+
+        </Grid>
     </Grid>
 </UserControl>
