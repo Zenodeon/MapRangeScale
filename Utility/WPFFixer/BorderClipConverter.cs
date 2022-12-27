@@ -6,7 +6,7 @@ using System.Windows.Media;
 
 //Based on https://stackoverflow.com/a/5650367
 
-namespace YTDownloaderXConverter
+namespace MapRangeScale
 {
     public class BorderClipConverter : IMultiValueConverter
     {

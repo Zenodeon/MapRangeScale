@@ -1,8 +1,15 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <SolidColorBrush x:Key="DarkerGray" Color="#151515"/>
-    <SolidColorBrush x:Key="DarkGray" Color="#252525"/>
-    <SolidColorBrush x:Key="MidGray" Color="#2d2d30"/>
+
+    <Color x:Key="DarkerGrayColor">#151515</Color>
+    <Color x:Key="DarkGrayColor" >#252525</Color>
+    <Color x:Key="MidGrayColor" >#2d2d2d</Color>
+    <Color x:Key="LightGrayColor" >#737373</Color>
+
+    <SolidColorBrush x:Key="DarkerGray" Color="{DynamicResource DarkerGrayColor}"/>
+    <SolidColorBrush x:Key="DarkGray" Color="{DynamicResource DarkGrayColor}"/>
+    <SolidColorBrush x:Key="MidGray" Color="{DynamicResource MidGrayColor}"/>
+    <SolidColorBrush x:Key="LightGray" Color="{DynamicResource LightGrayColor}"/>
 
     <SolidColorBrush x:Key="ButtonBarHover" Color="#00D8F5"/>
 
