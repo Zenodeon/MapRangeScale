@@ -40,5 +40,10 @@ namespace MapRangeScale
         {
             WindowState = WindowState.Minimized;
         }
+
+        private void TitleBar_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+        }
     }
 }

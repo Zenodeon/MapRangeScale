@@ -18,9 +18,9 @@ namespace MapRangeScale.View
     /// <summary>
     /// Interaction logic for TopNav.xaml
     /// </summary>
-    public partial class TopNav : UserControl
+    public partial class TitleBar : UserControl
     {
-        public TopNav()
+        public TitleBar()
         {
             InitializeComponent();
         }
