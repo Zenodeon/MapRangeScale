@@ -52,5 +52,32 @@ namespace MapRangeScale.CustomControl
                 e.CancelCommand();
         }
         #endregion
+
+        public string DirName
+        {
+            get { return (string)GetValue(DirNameProperty); }
+            set { SetValue(DirNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty DirNameProperty =
+            DependencyProperty.Register("DirName", typeof(string), typeof(NumInput), new PropertyMetadata("DIR"));
+
+        public string InputValue
+        {
+            get { return (string)GetValue(InputValueProperty); }
+            set { SetValue(InputValueProperty, value); }
+        }
+
+        public static readonly DependencyProperty InputValueProperty =
+            DependencyProperty.Register("InputValue", typeof(string), typeof(NumInput), new PropertyMetadata("0"));
+
+        public string InputName
+        {
+            get { return (string)GetValue(InputNameProperty); }
+            set { SetValue(InputNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty InputNameProperty =
+            DependencyProperty.Register("InputName", typeof(string), typeof(NumInput), new PropertyMetadata("INPUT"));
     }
 }
