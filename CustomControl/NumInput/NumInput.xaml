@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="MapRangeScale.CustomControl.NumInput"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MapRangeScale.CustomControl"
+             mc:Ignorable="d" 
+             Height="50" Width="40">
+    <Grid>
+        <Viewbox Grid.Row="0" Stretch="Uniform">
+            <TextBox x:Name="delayInput" Text="1" CaretBrush="#FF909090" PreviewTextInput="OnPreviewTextInput"  DataObject.Pasting="OnTextBoxPasting" TextAlignment="Center" VerticalAlignment="Center" Foreground="White"  BorderThickness="0" Background="Transparent" FontFamily="Segoe UI"/>
+        </Viewbox>
+    </Grid>
+</UserControl>
