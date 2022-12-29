@@ -26,6 +26,14 @@ namespace MapRangeScale.CustomControl
 
         float offset = 0;
 
+        float value;
+
+        public float inputValue
+        {
+            get => valueInput.Text == ""? 0 : float.Parse(valueInput.Text);
+            set => valueInput.Text = value + "";
+        }
+
         public NumInput()
         {
             InitializeComponent();
@@ -41,9 +49,10 @@ namespace MapRangeScale.CustomControl
 
         private void InputControlLeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
-            DLog.Log(e.ClickCount + "");
             if (e.ClickCount == 1)
             {
+                value = inputValue;
+
                 canDrag = true;
                 lastPoint = e.GetPosition(null);
 
@@ -52,7 +61,7 @@ namespace MapRangeScale.CustomControl
 
             if (e.ClickCount == 2)
             {
-                canDrag = false;
+                ResetDragState();
 
                 InputControl.IsHitTestVisible = false;
                 valueInput.Focus();
@@ -60,6 +69,11 @@ namespace MapRangeScale.CustomControl
         }
 
         private void InputControlLeftMouseButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            ResetDragState();
+        }
+
+        private void ResetDragState()
         {
             canDrag = false;
             offset = 0;
@@ -82,9 +96,10 @@ namespace MapRangeScale.CustomControl
             {
                 offset += 1 * delta.Signum();
                 lastPoint = point;
-            }
 
-            DLog.Log(offset + "");
+                inputValue = value + offset;
+                ValueChanged();
+            }
         }
 
         private void ValueChanged()
@@ -103,9 +118,11 @@ namespace MapRangeScale.CustomControl
 
         private void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            e.Handled = IsNumericString(e.Text);
+            bool canHandle = IsNumericString(e.Text);
+            e.Handled = canHandle;
 
-            ValueChanged();
+            //if (canHandle)
+            //    ValueChanged();
         }
 
         private void OnTextBoxPasting(object sender, DataObjectPastingEventArgs e)
@@ -128,6 +145,8 @@ namespace MapRangeScale.CustomControl
                 ValueChanged();
         }
         #endregion
+
+        #region Dependecy
 
         public string DirName
         {
@@ -163,6 +182,12 @@ namespace MapRangeScale.CustomControl
         {
             add { AddHandler(OnValueChangedEvent, value); }
             remove { RemoveHandler(OnValueChangedEvent, value); }
+        }
+        #endregion
+
+        public static implicit operator float(NumInput numInput) 
+        {
+            return numInput.inputValue; 
         }
     }
 }
