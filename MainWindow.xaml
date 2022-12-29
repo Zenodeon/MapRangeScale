@@ -11,7 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
-        Title="MainWindow" Height="150" Width="800">
+        Title="MainWindow" Height="125" Width="800">
     <Window.Resources>
         <Style BasedOn="{StaticResource {x:Type Button}}"
                TargetType="Button"
@@ -57,7 +57,7 @@
 
     </Window.Resources>
 
-    <Border x:Name="cb" VerticalAlignment="Top" Height="150" CornerRadius="8" Background="Transparent">
+    <Border x:Name="cb" VerticalAlignment="Top" Height="125" CornerRadius="8" Background="Transparent">
         <Border.Clip>
             <MultiBinding Converter="{StaticResource BCC}">
                 <Binding Path="ActualWidth"
@@ -105,6 +105,14 @@
                     <CC:NumInput x:Name="OMN" DirName="OUPUT" InputValue="0" InputName="MIN" OnValueChanged="UpdateRange" Grid.Column="3" VerticalAlignment="Center" Width="75"/>
                     <CC:NumInput x:Name="OMX" DirName="OUPUT" InputValue="1" InputName="MAX" OnValueChanged="UpdateRange" Grid.Column="4" VerticalAlignment="Center" Width="75"/>
                     <CC:NumInput x:Name="OR" DirName="OUTPUT" InputValue="0" InputName="RESULT" OnValueChanged="UpdateRangeInverse" Grid.Column="5" VerticalAlignment="Center" Width="75"/>
+
+                    <Viewbox Grid.Column="1" Grid.ColumnSpan="2" Width="50" Height="20" Opacity="0.2">
+                        <TextBlock x:Name="IMR" Text="Range" Foreground="White"/>
+                    </Viewbox>
+
+                    <Viewbox Grid.Column="3" Grid.ColumnSpan="2" Width="50" Height="20" Opacity="0.2">
+                        <TextBlock x:Name="OMR" Text="Range" Foreground="White"/>
+                    </Viewbox>
 
                 </Grid>
             </Grid>

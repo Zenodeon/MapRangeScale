@@ -26,16 +26,30 @@ namespace MapRangeScale
 
             InitializeComponent();
             TitleBar.parentWindow= this;
+
+            UpdateRange();
         }
 
         private void UpdateRange(object sender, RoutedEventArgs e)
         {
+            UpdateRange();
+        }
+
+        private void UpdateRange()
+        {
             OR.inputValue = UUtility.RangedMapClamp(IV, IMN, IMX, OMN, OMX);
+            ShowRange();
         }
 
         private void UpdateRangeInverse(object sender, RoutedEventArgs e)
         {
             IV.inputValue = UUtility.RangedMapClamp(OR, OMN, OMX, IMN, IMX);
+        }
+
+        private void ShowRange()
+        {
+            IMR.Text = "- " + MathF.Abs(IMX - IMN) + " -";
+            OMR.Text = "- " + MathF.Abs(OMX - OMN) + " -";
         }
 
         private void Background_MouseDown(object sender, MouseButtonEventArgs e)
