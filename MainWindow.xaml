@@ -68,7 +68,7 @@
                         RelativeSource="{RelativeSource Self}"/>
             </MultiBinding>
         </Border.Clip>
-        
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -78,7 +78,7 @@
 
             <view:TitleBar x:Name="TitleBar" Grid.Row="0" Height="10"/>
 
-            <Border Grid.Row="1" Background="{StaticResource DarkGray}"/>
+            <Border Grid.Row="1" MouseDown="Background_MouseDown" Background="{StaticResource DarkGray}"/>
 
             <Grid Grid.Row="1">
 
@@ -99,7 +99,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
 
-                    <CC:NumInput DirName="INPUT" InputValue="0" InputName="VALUE" Grid.Column="0" VerticalAlignment="Center" Width="75"/>
+                    <CC:NumInput DirName="INPUT" InputValue="0" InputName="VALUE" OnValueChanged="UpdateRange" Grid.Column="0" VerticalAlignment="Center" Width="75"/>
                     <CC:NumInput DirName="INPUT" InputValue="0" InputName="MIN" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <CC:NumInput InputValue="10" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     <CC:NumInput Grid.Column="3" Height="50" Width="75"/>

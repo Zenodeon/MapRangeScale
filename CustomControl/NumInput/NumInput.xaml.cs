@@ -21,9 +21,55 @@ namespace MapRangeScale.CustomControl
     /// </summary>
     public partial class NumInput : UserControl
     {
+        private bool canDrag = false;
+        Point startPoint;
+
         public NumInput()
         {
             InitializeComponent();
+            ValueChanged();     
+        }
+
+        protected override void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs e)
+        {
+            base.OnLostKeyboardFocus(e);
+
+            InputControl.IsHitTestVisible = true;
+        }
+
+        private void InputControlLeftMouseButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ClickCount == 1)
+            {
+                canDrag = true;
+                startPoint = e.GetPosition(this);
+            }
+
+            if (e.ClickCount == 2)
+            {
+                canDrag = false;
+
+                InputControl.IsHitTestVisible = false;
+                valueInput.Focus();
+            }
+        }
+
+        private void InputControlLeftMouseButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            canDrag = false;
+        }
+
+        private void InputControlPreviewMouseMove(object sender, MouseEventArgs e)
+        {
+            if (!canDrag)
+                return;
+
+            e.GetPosition(this);
+        }
+
+        private void ValueChanged()
+        {
+            RaiseEvent(new RoutedEventArgs(OnValueChangedEvent));
         }
 
         #region TextInput Filtering
@@ -38,18 +84,28 @@ namespace MapRangeScale.CustomControl
         private void OnPreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = IsNumericString(e.Text);
+
+            ValueChanged();
         }
 
         private void OnTextBoxPasting(object sender, DataObjectPastingEventArgs e)
         {
+            bool cancelCommand = false;
+
             if (e.DataObject.GetDataPresent(typeof(String)))
             {
                 String text = (String)e.DataObject.GetData(typeof(String));
+
                 if (!IsNumericString(text))
-                    e.CancelCommand();
+                    cancelCommand = true;
             }
             else
+                cancelCommand = true;
+
+            if (cancelCommand)
                 e.CancelCommand();
+            else
+                ValueChanged();
         }
         #endregion
 
@@ -79,5 +135,14 @@ namespace MapRangeScale.CustomControl
 
         public static readonly DependencyProperty InputNameProperty =
             DependencyProperty.Register("InputName", typeof(string), typeof(NumInput), new PropertyMetadata("INPUT"));
+
+        public static readonly RoutedEvent OnValueChangedEvent =
+         EventManager.RegisterRoutedEvent(nameof(OnValueChanged), RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(NumInput));
+
+        public event RoutedEventHandler OnValueChanged
+        {
+            add { AddHandler(OnValueChangedEvent, value); }
+            remove { RemoveHandler(OnValueChangedEvent, value); }
+        }
     }
 }

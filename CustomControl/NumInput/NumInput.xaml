@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:MapRangeScale.CustomControl"
              x:Name="root"
              mc:Ignorable="d" 
-             Height="90" Width="40">
+             Height="90" Width="75">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -14,16 +14,18 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        
-        <Viewbox Grid.Row="1" Height="25" Stretch="Uniform">
-            <TextBox x:Name="delayInput" Text="{Binding InputValue, ElementName=root, FallbackValue=0}" Margin="{StaticResource NumericTextOffset}" CaretBrush="#FF909090" PreviewTextInput="OnPreviewTextInput"  DataObject.Pasting="OnTextBoxPasting" TextAlignment="Center" VerticalAlignment="Center" Foreground="White"  BorderThickness="0" Background="Transparent" FontFamily="Segoe UI"/>
-        </Viewbox>
 
-        <Viewbox Grid.Row="0"  Stretch="Uniform">
+        <Viewbox Grid.Row="0"  Stretch="Uniform" IsHitTestVisible="False">
             <TextBlock Text="{Binding DirName, ElementName=root, FallbackValue=DIR}" Margin="{StaticResource TextOffset}" Foreground="White" VerticalAlignment="Bottom"/>
         </Viewbox>
 
-        <Viewbox Grid.Row="2" Stretch="Uniform">
+        <Viewbox Grid.Row="1" Height="25" Stretch="Uniform">
+            <TextBox x:Name="valueInput" Text="{Binding InputValue, ElementName=root, FallbackValue=0}" Margin="{StaticResource NumericTextOffset}" CaretBrush="#FF909090" PreviewTextInput="OnPreviewTextInput"  DataObject.Pasting="OnTextBoxPasting" TextAlignment="Center" VerticalAlignment="Center" Foreground="White"  BorderThickness="0" Background="Transparent" FontFamily="Segoe UI"/>
+        </Viewbox>
+
+        <Border x:Name="InputControl" IsHitTestVisible="True" Background="Transparent" Grid.Row="1" MouseLeftButtonDown="InputControlLeftMouseButtonDown" MouseLeftButtonUp="InputControlLeftMouseButtonUp" PreviewMouseMove="InputControlPreviewMouseMove"/>
+
+        <Viewbox Grid.Row="2" Stretch="Uniform" IsHitTestVisible="False">
             <TextBlock Text="{Binding InputName, ElementName=root, FallbackValue=INPUT}" Margin="{StaticResource TextOffset}" Foreground="White" VerticalAlignment="Bottom"/>
         </Viewbox>
     </Grid>

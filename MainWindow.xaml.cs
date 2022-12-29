@@ -22,8 +22,22 @@ namespace MapRangeScale
     {
         public MainWindow()
         {
+            DLog.Instantiate();
+
             InitializeComponent();
             TitleBar.parentWindow= this;
+        }
+
+        private void UpdateRange(object sender, RoutedEventArgs e)
+        {
+            DLog.Log("Value Changed");
+        }
+
+        private void Background_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.LoseFocus();
+            if (e.LeftButton == MouseButtonState.Pressed)
+                DragMove();
         }
     }
 }

@@ -57,7 +57,7 @@
             <Border x:Name="TitleBarHandle" CornerRadius="2" Background="{StaticResource LightGray}" Width="50" Height="6"/>
         </Border>
 
-        <Grid x:Name="ControlsGrid" Height="20" VerticalAlignment="Top">
+        <Grid x:Name="ControlsGrid" d:Height="20" Height="0" VerticalAlignment="Top">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
