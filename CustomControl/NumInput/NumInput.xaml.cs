@@ -22,12 +22,14 @@ namespace MapRangeScale.CustomControl
     public partial class NumInput : UserControl
     {
         private bool canDrag = false;
-        Point startPoint;
+        Point lastPoint;
+
+        float offset = 0;
 
         public NumInput()
         {
             InitializeComponent();
-            ValueChanged();     
+            ValueChanged();
         }
 
         protected override void OnLostKeyboardFocus(KeyboardFocusChangedEventArgs e)
@@ -39,10 +41,13 @@ namespace MapRangeScale.CustomControl
 
         private void InputControlLeftMouseButtonDown(object sender, MouseButtonEventArgs e)
         {
+            DLog.Log(e.ClickCount + "");
             if (e.ClickCount == 1)
             {
                 canDrag = true;
-                startPoint = e.GetPosition(this);
+                lastPoint = e.GetPosition(null);
+
+                InputControl.CaptureMouse();
             }
 
             if (e.ClickCount == 2)
@@ -57,6 +62,9 @@ namespace MapRangeScale.CustomControl
         private void InputControlLeftMouseButtonUp(object sender, MouseButtonEventArgs e)
         {
             canDrag = false;
+            offset = 0;
+
+            InputControl.ReleaseMouseCapture();
         }
 
         private void InputControlPreviewMouseMove(object sender, MouseEventArgs e)
@@ -64,7 +72,19 @@ namespace MapRangeScale.CustomControl
             if (!canDrag)
                 return;
 
-            e.GetPosition(this);
+            Point point = e.GetPosition(null);
+
+            float delta = (float)(point.X - lastPoint.X);
+
+            float interval = Keyboard.IsKeyDown(Key.LeftShift) ? 10 : 1;
+
+            if (MathF.Abs(delta) >= interval)
+            {
+                offset += 1 * delta.Signum();
+                lastPoint = point;
+            }
+
+            DLog.Log(offset + "");
         }
 
         private void ValueChanged()

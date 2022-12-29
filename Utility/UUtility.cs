@@ -16,5 +16,13 @@ namespace MapRangeScale
 
             return finalValue;
         }
+
+        public static int Signum(this float value)
+        {
+            if (value >= 0)
+                return 1;
+            else
+                return -1;
+        }
     }
 }
