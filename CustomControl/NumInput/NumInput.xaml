@@ -15,7 +15,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Viewbox Grid.Row="0"  Stretch="Uniform" IsHitTestVisible="False">
+        <Viewbox Grid.Row="0" Opacity="0.4" Stretch="Uniform" IsHitTestVisible="False">
             <TextBlock Text="{Binding DirName, ElementName=root, FallbackValue=DIR}" Margin="{StaticResource TextOffset}" Foreground="White" VerticalAlignment="Bottom"/>
         </Viewbox>
 
@@ -25,7 +25,7 @@
 
         <Border x:Name="InputControl" IsHitTestVisible="True" Background="Transparent" Grid.Row="1" MouseLeftButtonDown="InputControlLeftMouseButtonDown" MouseLeftButtonUp="InputControlLeftMouseButtonUp" PreviewMouseMove="InputControlPreviewMouseMove"/>
 
-        <Viewbox Grid.Row="2" Stretch="Uniform" IsHitTestVisible="False">
+        <Viewbox Grid.Row="2" Opacity="0.4" Stretch="Uniform" IsHitTestVisible="False">
             <TextBlock Text="{Binding InputName, ElementName=root, FallbackValue=INPUT}" Margin="{StaticResource TextOffset}" Foreground="White" VerticalAlignment="Bottom"/>
         </Viewbox>
     </Grid>

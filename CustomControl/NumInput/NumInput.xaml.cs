@@ -90,11 +90,12 @@ namespace MapRangeScale.CustomControl
 
             float delta = (float)(point.X - lastPoint.X);
 
-            float interval = Keyboard.IsKeyDown(Key.LeftShift) ? 10 : 1;
+            float interval = Keyboard.IsKeyDown(Key.LeftCtrl) ? 10 : 1;
+            float step = Keyboard.IsKeyDown(Key.LeftShift) ? 10 : 1;
 
             if (MathF.Abs(delta) >= interval)
             {
-                offset += 1 * delta.Signum();
+                offset += step * delta.Signum();
                 lastPoint = point;
 
                 inputValue = value + offset;

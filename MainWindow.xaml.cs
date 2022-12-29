@@ -35,7 +35,7 @@ namespace MapRangeScale
 
         private void UpdateRangeInverse(object sender, RoutedEventArgs e)
         {
-            //IV.inputValue = UUtility.RangedMapClamp(OR, OMN, OMX, IMN, IMX);
+            IV.inputValue = UUtility.RangedMapClamp(OR, OMN, OMX, IMN, IMX);
         }
 
         private void Background_MouseDown(object sender, MouseButtonEventArgs e)
